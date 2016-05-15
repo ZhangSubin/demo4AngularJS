@@ -1,0 +1,10 @@
+<div><strong>Subject: </strong>{{message.subject}}</div>
+<div><strong>Sender: </strong>{{message.sender}}</div>
+<div><strong>Date: </strong>{{message.date}}</div>
+<!-- ng-bind 性能不如 {{}}，尽量只在 index.html 页面使用 ng-bind，避免花括号一闪而过-->
+<div>
+    <strong>To: </strong>
+    <span ng-repeat="recipient in message.recipients">{{recipient}}</span>
+</div>
+<div>{{message.message}}</div>
+<a href="#/">back to message list</a>
