@@ -1,6 +1,9 @@
+'use strict';
+
 var services = angular.module('guthub.services', ['ngResource']);
 
 services.factory('Recipe', ['$resource',
+    // 通过 $resource 定义一个服务访问对象 SAO（Service Access Object）
     function($resource) {
         return $resource('/recipes/:id', {id: '@id'});
 }]);

@@ -1,3 +1,5 @@
+'use strict';
+
 var directives = angular.module('guthub.directives', []);
 
 directives.directive('butterbar', ['$rootScope',
