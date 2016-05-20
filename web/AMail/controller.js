@@ -5,12 +5,12 @@ var aMailServices = angular.module('AMail', ['ngRoute']);
 aMailServices.config(function($routeProvider) {
     $routeProvider.
     when('/', {
-        controller: ListController,
+        controller: ListController,     // 全局的 function 方式去找 Controller
         templateUrl: 'list.html'
     }).
     //注意，为了创建详情视图，在 id 前面加了一个冒号，从而指定了一个参数化的 URL 组件
     when('/view/:id', {
-        controller: DetailController,
+        controller: 'DetailController', // 用注册的方式去找 Controller
         templateUrl: 'detail.html'
     }).
     otherwise({
@@ -36,18 +36,11 @@ messages = [{
         + "She doesn't move too fast, so just call me if you see her."
     }];
     
-//把邮件发布给邮件列表模板
+//把邮件发布给邮件列表模板，注意两种方式，建议使用下面注册的方式，避免全局的 function 污染
 function ListController($scope) {
     $scope.messages = messages;
 }
-//aMailServices.controller('ListController', function($scope) {
-//    $scope.messages = messages;
-//});
 
-//从路由信息 (从 URL 中解析出来) 中获取邮件 id， 然后用它找到正确的邮件对象
-function DetailController($scope, $routeParams) {
-    $scope.message = messages[$routeParams.id];
-}
-//aMailServices.controller('DetailController', function($scope, $routeParams) {
-//    $scope.messages = messages[$routeParams.id];
-//});
+aMailServices.controller('DetailController', function($scope, $routeParams) {
+    $scope.messages = messages[$routeParams.id];
+});
