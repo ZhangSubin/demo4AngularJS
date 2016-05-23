@@ -1,0 +1,14 @@
+<html ng-app="ShoppingModule">
+    <body ng-controller="ShoppingController">
+        <script src="../src/angular.js"></script>
+        <script src="factory.js"></script>
+        <h1>Shop!</h1>
+        <table>
+            <tr ng-repeat="item in items">
+                <td>{{item.title}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.price | currency}}</td>
+            </tr>
+        </table>
+    </body>
+</html>
